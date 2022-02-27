@@ -1,0 +1,21 @@
+#container {
+  display: flex;
+}
+
+.child {
+  width: 200px;
+  height: 200px;
+
+}
+
+#child1 {
+  background-color: brown;
+}
+
+#child2 {
+  background-color: blueviolet;
+}
+
+#child3 {
+  background-color: darkcyan;
+}
