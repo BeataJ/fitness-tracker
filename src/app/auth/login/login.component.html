@@ -1,5 +1,9 @@
 <section>
-  <form fxLayout="column" fxLayoutAlign="center center">
+  <form
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    [formGroup]="loginForm"
+    >
     <mat-form-field>
       <input type="email" matInput placeholder="Your email">
     </mat-form-field>
