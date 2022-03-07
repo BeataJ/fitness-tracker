@@ -5,10 +5,22 @@
     [formGroup]="loginForm"
     >
     <mat-form-field>
-      <input type="email" matInput placeholder="Your email">
+      <input
+        type="email"
+        matInput placeholder="Your email"
+        formControlName="email"
+        >
+        <mat-hint>Please enter a valid email</mat-hint>
+        <mat-error>Invalid or missing email</mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input type="password" matInput placeholder="Your password">
+      <input
+        type="password"
+        matInput placeholder="Your password"
+        formControlName="password"
+        >
+        <mat-hint>Please enter your password</mat-hint>
+        <mat-error>Missing passowrd</mat-error>
     </mat-form-field>
   </form>
 </section>
