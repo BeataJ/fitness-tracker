@@ -2,6 +2,7 @@
   <form
     fxLayout="column"
     fxLayoutAlign="center center"
+    fxLayoutGap="10px"
     [formGroup]="loginForm"
     >
     <mat-form-field>
@@ -22,5 +23,6 @@
         <mat-hint>Please enter your password</mat-hint>
         <mat-error>Missing passowrd</mat-error>
     </mat-form-field>
+    <button mat-raised-button color="accent" type="submit" [disabled]="loginForm.invalid">Submit</button>
   </form>
 </section>
