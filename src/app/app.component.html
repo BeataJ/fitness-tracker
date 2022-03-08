@@ -1,9 +1,9 @@
 <mat-sidenav-container>
-  <mat-sidenav opened="true">
+  <mat-sidenav #sidenav role="navigation">
     <p>I'm sidenav</p>
   </mat-sidenav>
   <mat-sidenav-content>
-    <button>Show Sidenav</button>
+    <button (click)="sidenav.toggle()">Show Sidenav</button>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
