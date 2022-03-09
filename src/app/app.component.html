@@ -1,9 +1,12 @@
 <mat-sidenav-container>
   <mat-sidenav #sidenav role="navigation">
     <mat-nav-list>
-      <a routerLink="/signup">Signup</a>
-      <a routerLink="/login">Login</a>
-      <a routerLink="/training">Training</a>
+      <a mat-list-item routerLink="/signup">
+        <mat-icon>face</mat-icon>
+        <span class="nav-caption">Signup</span>
+      </a>
+      <a mat-list-item routerLink="/login">Login</a>
+      <a mat-list-item routerLink="/training">Training</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
