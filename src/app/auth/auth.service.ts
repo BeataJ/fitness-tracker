@@ -10,4 +10,12 @@ export class AuthService {
       userId: Math.round(Math.random() * 10000).toString()
     }
   }
+
+  login(authData: AuthData) {
+    this.user = {
+      email: authData.email,
+      userId: Math.round(Math.random() * 10000).toString(),
+    };
+  }
+
 }
