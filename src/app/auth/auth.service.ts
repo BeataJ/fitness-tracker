@@ -2,7 +2,7 @@ import { AuthData } from "./auth-data.model";
 import { User } from "./user.model";
 
 export class AuthService {
-  private user!: User;
+  private user: User | undefined;
 
   registerUser(authData: AuthData) {
     this.user = {
@@ -16,6 +16,14 @@ export class AuthService {
       email: authData.email,
       userId: Math.round(Math.random() * 10000).toString(),
     };
+  }
+
+  logout() {
+    this.user = undefined;
+  }
+
+  getUser(){
+    return { ...this.user }
   }
 
 }
