@@ -19,8 +19,7 @@ export class AuthService {
       email: authData.email,
       userId: Math.round(Math.random() * 10000).toString(),
     };
-    this.authChange.next(true);
-    this.router.navigate(['/training'])
+    this.authSuccessfully();
   }
 
   login(authData: AuthData) {
@@ -28,8 +27,7 @@ export class AuthService {
       email: authData.email,
       userId: Math.round(Math.random() * 10000).toString(),
     };
-    this.authChange.next(true);
-    this.router.navigate(['/training']);
+    this.authSuccessfully();
   }
 
   logout() {
@@ -44,6 +42,11 @@ export class AuthService {
 
   isAuth() {
     return this.user != null;
+  }
+
+  private authSuccessfully() {
+    this.authChange.next(true);
+    this.router.navigate(['/training']);
   }
 }
 
