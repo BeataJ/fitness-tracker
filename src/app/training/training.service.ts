@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Exercise } from "./exercise.model";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TrainingService {
   private availableExercises: Exercise[] = [
@@ -12,7 +12,16 @@ export class TrainingService {
     { id: 'burpees', name: 'Burpees', duration: 60, calories: 8 },
   ];
 
+  private runningExercise: Exercise | undefined;
+
   getAvailableExercises() {
     return this.availableExercises.slice();
+  }
+
+  startExercise(selectedId: string) {
+    const selectedExercise = this.availableExercises.find(
+      (ex) => ex.id === selectedId
+    );
+    this.runningExercise = selectedExercise;
   }
 }
