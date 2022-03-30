@@ -16,17 +16,21 @@ export class TrainingService {
     { id: 'burpees', name: 'Burpees', duration: 60, calories: 8 },
   ];
 
-  private runningExercise: Exercise | undefined;
+  private runningExercise: Exercise | any = [];
+  private exercises: Exercise[] = [];
 
   getAvailableExercises() {
     return this.availableExercises.slice();
   }
 
-  startExercise(selectedId:string) {
+  startExercise(selectedId: string) {
     this.runningExercise = this.availableExercises.find(
       (ex) => ex.id === selectedId
     );
+    this.exerciseChange.next({ ...this.runningExercise });
+  }
 
-    this.exerciseChange.next({ ...this.runningExercise  })
+  getRunningExercise() {
+    return { ...this.runningExercise };
   }
 }
