@@ -1,3 +1,4 @@
+import { isNull } from "@angular/compiler/src/output/output_ast";
 import { Injectable } from "@angular/core";
 import { Subject } from "rxjs";
 
@@ -7,7 +8,7 @@ import { Exercise } from "./exercise.model";
   providedIn: 'root',
 })
 export class TrainingService {
-  exerciseChange = new Subject<Exercise>();
+  exerciseChange = new Subject<Exercise | null>();
 
   private availableExercises: Exercise[] = [
     { id: 'crunches', name: 'Crunches', duration: 30, calories: 8 },
@@ -29,6 +30,18 @@ export class TrainingService {
     );
     this.exerciseChange.next({ ...this.runningExercise });
   }
+
+  completeExercise() {
+    this.exercises.push({
+      ...this.runningExercise,
+      date: new Date(),
+      state: 'completed'
+    });
+    this.runningExercise = null;
+    this.exerciseChange.next(null);
+  }
+
+  cancelExercise() {}
 
   getRunningExercise() {
     return { ...this.runningExercise };
