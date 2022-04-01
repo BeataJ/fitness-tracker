@@ -41,7 +41,17 @@ export class TrainingService {
     this.exerciseChange.next(null);
   }
 
-  cancelExercise() {}
+  cancelExercise(progress: number) {
+    this.exercises.push({
+      ...this.runningExercise,
+      duration: this.runningExercise.duration * (progress / 100),
+      calories: this.runningExercise.duration * (progress / 100),
+      date: new Date(),
+      state: 'cancelled',
+    });
+    this.runningExercise = null;
+    this.exerciseChange.next(null);
+  }
 
   getRunningExercise() {
     return { ...this.runningExercise };
