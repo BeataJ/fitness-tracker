@@ -14,7 +14,7 @@ export class PastTrainingComponent implements OnInit, AfterViewInit {
   dataSource = new MatTableDataSource<Exercise>();
 
   @ViewChild(MatSort)
-  sort: MatSort = new MatSort;
+  sort: MatSort = new MatSort();
 
   constructor(private trainingService: TrainingService) {}
 
@@ -24,6 +24,11 @@ export class PastTrainingComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-      this.dataSource.sort = this.sort
+    this.dataSource.sort = this.sort;
+  }
+
+  doFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }
