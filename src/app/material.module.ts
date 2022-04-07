@@ -16,6 +16,7 @@ import { MatListModule } from '@angular/material/list';
  import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
  import { MatDialogModule } from '@angular/material/dialog';
  import { MatSortModule } from '@angular/material/sort';
+ import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 const material = [
@@ -36,6 +37,7 @@ const material = [
   MatProgressSpinnerModule,
   MatDialogModule,
   MatSortModule,
+  MatPaginatorModule,
 ];
 
 @NgModule({
