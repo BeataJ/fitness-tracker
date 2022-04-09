@@ -1,5 +1,9 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+# ./src/environments/environment.ts
+
+/secret.ts
+
 # compiled output
 /dist
 /tmp
@@ -45,4 +49,4 @@ testem.log
 .DS_Store
 Thumbs.db
 
-/src/environments
+
