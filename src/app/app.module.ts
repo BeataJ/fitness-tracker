@@ -7,7 +7,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
 // import { environment } from '../environments/environment';
-import { firebase} from 'secret';
+import { myFire} from 'secret';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -46,7 +46,8 @@ import { StopTrainingComponent } from './training/current-training/stop-training
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
-    AngularFireModule.initializeApp(firebase)
+    AngularFireModule.initializeApp(myFire),
+    AngularFirestoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
