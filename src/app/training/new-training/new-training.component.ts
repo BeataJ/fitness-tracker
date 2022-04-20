@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Observable } from 'rxjs';
 
 import { Exercise } from '../exercise.model';
 import { TrainingService } from '../training.service';
@@ -12,7 +13,7 @@ import { TrainingService } from '../training.service';
 })
 export class NewTrainingComponent implements OnInit {
   @Output() trainingStart = new EventEmitter<void>()
-  exercises: Exercise[] = [];
+  exercises!: Observable<any>;
 
   constructor(
     private trainingService: TrainingService,
@@ -20,9 +21,7 @@ export class NewTrainingComponent implements OnInit {
     ) {}
 
   ngOnInit(): void {
-    this.db.collection('availableExercises').valueChanges().subscribe(res => {
-      console.log(res);
-    });
+    this.exercises = this.db.collection('availableExercises').valueChanges();
   }
 
   onStartTraining(form: NgForm) {
