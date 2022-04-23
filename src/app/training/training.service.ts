@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
-import { Subject } from "rxjs";
+import { AngularFirestore } from "@angular/fire/compat/firestore";
+import { map, Subject } from "rxjs";
 
 import { Exercise } from "./exercise.model";
 
@@ -8,12 +9,37 @@ import { Exercise } from "./exercise.model";
 })
 export class TrainingService {
   exerciseChange = new Subject<Exercise | null>();
+  exercisesChange = new Subject<Exercise[]>();
   private availableExercises: Exercise[] = [];
   private runningExercise: Exercise | any = [];
   private exercises: Exercise[] = [];
 
+  constructor(private db: AngularFirestore){}
+
   fetchAvailableExercises() {
-    return this.availableExercises.slice();
+    this.db
+      .collection('availableExercises')
+      .snapshotChanges()
+      .pipe(
+        map(
+          (docArray: { payload: { doc: { id: any; data: () => any } } }[]) => {
+            return docArray.map(
+              (doc: { payload: { doc: { id: any; data: () => any } } }) => {
+                return {
+                  id: doc.payload.doc.id,
+                  calories: doc.payload.doc.data().calories,
+                  name: doc.payload.doc.data().name,
+                  duration: doc.payload.doc.data().duration,
+                };
+              }
+            );
+          }
+        )
+      )
+      .subscribe((exercises: Exercise[]) => {
+        this.availableExercises = this.exercises;
+        this.exercisesChange.next([...this.availableExercises])
+      });
   }
 
   startExercise(selectedId: string) {

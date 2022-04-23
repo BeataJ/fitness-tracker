@@ -24,23 +24,7 @@ export class NewTrainingComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.exercises = this.db
-      .collection('availableExercises')
-      .snapshotChanges()
-      .pipe(
-        map((docArray: { payload: { doc: { id: any; data: () => any; }; }; }[]) => {
-          return docArray.map((doc: { payload: { doc: { id: any; data: () => any; }; }; }) => {
-            return {
 
-              id: doc.payload.doc.id,
-              calories: doc.payload.doc.data().calories,
-              name: doc.payload.doc.data().name,
-              duration: doc.payload.doc.data().duration,
-
-            };
-          });
-        })
-      )
 
   }
 
