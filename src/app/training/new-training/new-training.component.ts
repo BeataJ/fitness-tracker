@@ -1,8 +1,8 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
-import {   Observable, Subscription } from 'rxjs';
-import { map } from 'rxjs/operators'
+import {  Subscription } from 'rxjs';
+
 
 import { Exercise } from '../exercise.model';
 import { TrainingService } from '../training.service';
@@ -16,17 +16,16 @@ import { TrainingService } from '../training.service';
 })
 export class NewTrainingComponent implements OnInit, OnDestroy {
   @Output() trainingStart = new EventEmitter<void>();
-  exercises!: Exercise[];
+  exercises: Exercise[] = [];
   exerciseSubscription!: Subscription;
 
-  constructor(
-    private trainingService: TrainingService,
-  ) {}
+  constructor(private trainingService: TrainingService) {}
 
-  ngOnInit(): void {
-    this.exerciseSubscription = this.trainingService.exercisesChange.subscribe(exercises => this.exercises = exercises);
+  ngOnInit() {
+    this.exerciseSubscription = this.trainingService.exercisesChange.subscribe(
+      (exercises) => (this.exercises = exercises)
+    );
     this.trainingService.fetchAvailableExercises();
-
   }
 
   onStartTraining(form: NgForm) {
@@ -34,6 +33,6 @@ export class NewTrainingComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-      this.exerciseSubscription.unsubscribe();
+    this.exerciseSubscription.unsubscribe();
   }
 }

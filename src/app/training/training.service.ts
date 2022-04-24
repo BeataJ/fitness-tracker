@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { AngularFirestore } from "@angular/fire/compat/firestore";
-import { map, Subject } from "rxjs";
+import {  Subject } from "rxjs";
+import { map } from 'rxjs/operators'
 
 import { Exercise } from "./exercise.model";
 
@@ -37,8 +38,8 @@ export class TrainingService {
         )
       )
       .subscribe((exercises: Exercise[]) => {
-        this.availableExercises = this.exercises;
-        this.exercisesChange.next([...this.availableExercises])
+        this.availableExercises = exercises;
+        this.exercisesChange.next([...this.availableExercises]);
       });
   }
 
