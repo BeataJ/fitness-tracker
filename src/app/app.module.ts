@@ -5,6 +5,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 // import { environment } from '../environments/environment';
 import { myFire} from 'secret';
@@ -48,6 +49,7 @@ import { StopTrainingComponent } from './training/current-training/stop-training
     ReactiveFormsModule,
     AngularFireModule.initializeApp(myFire),
     AngularFirestoreModule,
+    AngularFireAuthModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
