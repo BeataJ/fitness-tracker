@@ -11,7 +11,7 @@ import { User } from "./user.model";
 })
 export class AuthService {
   authChange = new Subject<boolean>()
-  private user: User | undefined;
+  private isAuthenticated = false;
 
   constructor(
     private router: Router,
@@ -20,7 +20,6 @@ export class AuthService {
 
   registerUser(authData: AuthData) {
     this.afaAuth.createUserWithEmailAndPassword(authData.email, authData.password).then(result => {
-      console.log(result);
       this.authSuccessfully();
     }).catch(error => {
       console.log(error)
@@ -39,20 +38,20 @@ export class AuthService {
   }
 
   logout() {
-    this.user = undefined;
+
     this.authChange.next(false);
     this.router.navigate(['/login']);
+    this.isAuthenticated = false;
   }
 
-  getUser() {
-    return { ...this.user };
-  }
+
 
   isAuth() {
-    return this.user != null;
+    return this.isAuthenticated;
   }
 
   private authSuccessfully() {
+    this.isAuthenticated = true;
     this.authChange.next(true);
     this.router.navigate(['/training']);
   }
