@@ -15,15 +15,17 @@ export class AuthService {
 
   constructor(
     private router: Router,
-    private auth: AngularFireAuth
+    private afaAuth: AngularFireAuth
     ) {}
 
   registerUser(authData: AuthData) {
-    this.user = {
-      email: authData.email,
-      userId: Math.round(Math.random() * 10000).toString(),
-    };
-    this.authSuccessfully();
+    this.afaAuth.createUserWithEmailAndPassword(authData.email, authData.password).then(result => {
+      console.log(result);
+      this.authSuccessfully();
+    }).catch(error => {
+      console.log(error)
+    })
+
   }
 
   login(authData: AuthData) {
