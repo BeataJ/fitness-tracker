@@ -3,7 +3,8 @@ import {
   AngularFirestore
 } from '@angular/fire/compat/firestore';
 import {  Observable, Subject } from "rxjs";
-import { map } from 'rxjs/operators'
+import { map } from 'rxjs/operators';
+import { Subscription } from "rxjs";
 
 import { Exercise } from "./exercise.model";
 
@@ -16,6 +17,7 @@ export class TrainingService {
   finishedExercisesChange = new Subject<Exercise[]>();
   private availableExercises: Exercise[] = [];
   private runningExercise: Exercise | any = [];
+  private fbSubs: Subscription[] = [];
 
   constructor(private db: AngularFirestore) {}
 
