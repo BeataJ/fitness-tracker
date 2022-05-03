@@ -2,10 +2,12 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Subject } from "rxjs";
 import { AngularFireAuth } from "@angular/fire/compat/auth";
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { AuthData } from "./auth-data.model";
 import { User } from "./user.model";
 import { TrainingService } from "../training/training.service";
+
 
 
 @Injectable({
@@ -18,7 +20,8 @@ export class AuthService {
   constructor(
     private router: Router,
     private afaAuth: AngularFireAuth,
-    private trainingService: TrainingService
+    private trainingService: TrainingService,
+    private snackbar: MatSnackBar
     ) {}
 
     initAuthListener() {
