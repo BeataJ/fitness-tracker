@@ -43,9 +43,13 @@ export class AuthService {
     }
 
   registerUser(authData: AuthData) {
-    this.afaAuth.createUserWithEmailAndPassword(authData.email, authData.password).then(result => {
-
+    this.uiService.logingStateChanged.next(true);
+    this.afaAuth
+      .createUserWithEmailAndPassword(authData.email, authData.password)
+      .then(result => {
+        this.uiService.logingStateChanged.next(false);
     }).catch((error) => {
+      this.uiService.logingStateChanged.next(false);
       this.snackbar.open(error.message, undefined, {
         duration: 3000
       })
@@ -54,10 +58,14 @@ export class AuthService {
   }
 
   login(authData: AuthData) {
-    this.afaAuth.signInWithEmailAndPassword(authData.email, authData.password).then(result => {
-      console.log(result);
+    this.uiService.logingStateChanged.next(true);
+    this.afaAuth
+      .signInWithEmailAndPassword(authData.email, authData.password)
+      .then(result => {
+      this.uiService.logingStateChanged.next(false)
 
     }).catch(error => {
+      this.uiService.logingStateChanged.next(false);
       this.snackbar.open(error.message, undefined ,{
         duration: 3000,
       });
