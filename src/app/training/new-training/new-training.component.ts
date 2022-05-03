@@ -14,16 +14,21 @@ import { TrainingService } from '../training.service';
   templateUrl: './new-training.component.html',
   styleUrls: ['./new-training.component.css'],
 })
+
 export class NewTrainingComponent implements OnInit, OnDestroy {
   @Output() trainingStart = new EventEmitter<void>();
   exercises: Exercise[] = [];
   exerciseSubscription!: Subscription;
+  isLoading = true;
 
   constructor(private trainingService: TrainingService) {}
 
   ngOnInit() {
     this.exerciseSubscription = this.trainingService.exercisesChange.subscribe(
-      (exercises) => (this.exercises = exercises)
+      (exercises) => {
+        this.isLoading = false;
+        this.exercises = exercises
+      }
     );
     this.trainingService.fetchAvailableExercises();
   }
