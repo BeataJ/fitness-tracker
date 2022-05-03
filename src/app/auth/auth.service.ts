@@ -3,10 +3,12 @@ import { Router } from "@angular/router";
 import { Subject } from "rxjs";
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { UIService } from '../shared/ui.service';
 
 import { AuthData } from "./auth-data.model";
 import { User } from "./user.model";
 import { TrainingService } from "../training/training.service";
+
 
 
 
@@ -21,7 +23,8 @@ export class AuthService {
     private router: Router,
     private afaAuth: AngularFireAuth,
     private trainingService: TrainingService,
-    private snackbar: MatSnackBar
+    private snackbar: MatSnackBar,
+    private uiService: UIService
     ) {}
 
     initAuthListener() {
