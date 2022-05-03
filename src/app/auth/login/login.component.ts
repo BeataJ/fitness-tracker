@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { UIService } from 'src/app/shared/ui.service';
+import { Subscription } from 'rxjs';
 
+import { UIService } from 'src/app/shared/ui.service';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -11,6 +12,8 @@ import { AuthService } from '../auth.service';
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
+  isLoading = false;
+  private loadingSubs: Subscription = new Subscription;
 
   constructor(
     private authService: AuthService,
