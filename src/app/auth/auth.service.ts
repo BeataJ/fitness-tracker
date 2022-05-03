@@ -43,7 +43,7 @@ export class AuthService {
     this.afaAuth.createUserWithEmailAndPassword(authData.email, authData.password).then(result => {
 
     }).catch((error) => {
-      this.snackbar.open(error.message, 'Undo', {
+      this.snackbar.open(error.message, undefined, {
         duration: 3000
       })
     })
@@ -55,7 +55,7 @@ export class AuthService {
       console.log(result);
 
     }).catch(error => {
-      this.snackbar.open(error.message, 'Undo', {
+      this.snackbar.open(error.message, undefined ,{
         duration: 3000,
       });
     })
