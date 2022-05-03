@@ -42,8 +42,10 @@ export class AuthService {
   registerUser(authData: AuthData) {
     this.afaAuth.createUserWithEmailAndPassword(authData.email, authData.password).then(result => {
 
-    }).catch(error => {
-      console.log(error)
+    }).catch((error) => {
+      this.snackbar.open(error.message, 'Undo', {
+        duration: 3000
+      })
     })
 
   }
@@ -53,7 +55,9 @@ export class AuthService {
       console.log(result);
 
     }).catch(error => {
-      console.log(error);
+      this.snackbar.open(error.message, 'Undo', {
+        duration: 3000,
+      });
     })
 
   }
@@ -73,4 +77,8 @@ export class AuthService {
 
 }
 
+
+function action(_message: any, _action: any) {
+  throw new Error("Function not implemented.");
+}
 
