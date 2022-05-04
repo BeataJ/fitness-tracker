@@ -18,7 +18,7 @@ import { TrainingService } from '../training.service';
 
 export class NewTrainingComponent implements OnInit, OnDestroy {
   @Output() trainingStart = new EventEmitter<void>();
-  exercises: Exercise[] = [];
+  exercises: Exercise[] | null = [];
   private exerciseSubscription!: Subscription;
   private loadingSubscription!: Subscription;
   isLoading = true;
@@ -40,6 +40,10 @@ export class NewTrainingComponent implements OnInit, OnDestroy {
         this.exercises = exercises
       }
     );
+    this.fetchExercises();
+  }
+
+  fetchExercises() {
     this.trainingService.fetchAvailableExercises();
   }
 

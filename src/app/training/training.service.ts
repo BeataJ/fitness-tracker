@@ -14,7 +14,7 @@ import { UIService } from "../shared/ui.service";
 })
 export class TrainingService {
   exerciseChange = new Subject<Exercise | null>();
-  exercisesChange = new Subject<Exercise[]>();
+  exercisesChange = new Subject<Exercise[] | null>();
   finishedExercisesChange = new Subject<Exercise[]>();
   private availableExercises: Exercise[] = [];
   private runningExercise: Exercise | any = [];
@@ -33,16 +33,17 @@ export class TrainingService {
       .pipe(
         map(
           (docArray: { payload: { doc: { id: any; data: () => any } } }[]) => {
-            return docArray.map(
-              (doc: { payload: { doc: { id: any; data: () => any } } }) => {
-                return {
-                  id: doc.payload.doc.id,
-                  calories: doc.payload.doc.data().calories,
-                  name: doc.payload.doc.data().name,
-                  duration: doc.payload.doc.data().duration,
-                };
-              }
-            );
+            throw(new Error())
+            // return docArray.map(
+            //   (doc: { payload: { doc: { id: any; data: () => any } } }) => {
+            //     return {
+            //       id: doc.payload.doc.id,
+            //       calories: doc.payload.doc.data().calories,
+            //       name: doc.payload.doc.data().name,
+            //       duration: doc.payload.doc.data().duration,
+            //     };
+            //   }
+            // );
           }
         )
       )
@@ -50,7 +51,12 @@ export class TrainingService {
         this.uiService.logingStateChanged.next(false)
         this.availableExercises = exercises;
         this.exercisesChange.next([...this.availableExercises]);
-      }));
+      }, error => {
+        this.uiService.logingStateChanged.next(false);
+        this.uiService.showSnackbar('Fetching Exercises failed, please try again later', null, 3000);
+        this.exercisesChange.next(null);
+      }
+      ));
   }
 
   startExercise(selectedId: string) {
