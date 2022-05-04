@@ -11,7 +11,7 @@ export class UIService {
 
   constructor(private snackbar: MatSnackBar) {}
 
-  showSnackbar(message: any, action: any, duration: any) {
+  showSnackbar(message: any, action: any , duration: any) {
     this.snackbar.open(message, action, {
       duration: duration
     })

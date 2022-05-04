@@ -50,9 +50,8 @@ export class AuthService {
         this.uiService.logingStateChanged.next(false);
     }).catch((error) => {
       this.uiService.logingStateChanged.next(false);
-      this.snackbar.open(error.message, undefined, {
-        duration: 3000
-      })
+      this.uiService.showSnackbar(error.message, null, 3000)
+
     })
 
   }
@@ -66,20 +65,14 @@ export class AuthService {
 
     }).catch(error => {
       this.uiService.logingStateChanged.next(false);
-      this.snackbar.open(error.message, undefined ,{
-        duration: 3000,
-      });
+      this.uiService.showSnackbar(error.message, null, 3000);
     })
 
   }
 
   logout() {
-
     this.afaAuth.signOut()
-
   }
-
-
 
   isAuth() {
     return this.isAuthenticated;
