@@ -33,17 +33,17 @@ export class TrainingService {
       .pipe(
         map(
           (docArray: { payload: { doc: { id: any; data: () => any } } }[]) => {
-            throw(new Error())
-            // return docArray.map(
-            //   (doc: { payload: { doc: { id: any; data: () => any } } }) => {
-            //     return {
-            //       id: doc.payload.doc.id,
-            //       calories: doc.payload.doc.data().calories,
-            //       name: doc.payload.doc.data().name,
-            //       duration: doc.payload.doc.data().duration,
-            //     };
-            //   }
-            // );
+            // throw(new Error())
+            return docArray.map(
+              (doc: { payload: { doc: { id: any; data: () => any } } }) => {
+                return {
+                  id: doc.payload.doc.id,
+                  calories: doc.payload.doc.data().calories,
+                  name: doc.payload.doc.data().name,
+                  duration: doc.payload.doc.data().duration,
+                };
+              }
+            );
           }
         )
       )
