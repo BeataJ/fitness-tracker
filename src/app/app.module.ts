@@ -15,7 +15,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import { AuthModule } from './auth/auth.module';
-import { TrainingModule } from './training/training.module';
+
 
 
 @NgModule({
@@ -32,8 +32,7 @@ import { TrainingModule } from './training/training.module';
     MaterialModule,
     FlexLayoutModule,
     AngularFireModule.initializeApp(myFire),
-    AuthModule,
-    TrainingModule,
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent],
