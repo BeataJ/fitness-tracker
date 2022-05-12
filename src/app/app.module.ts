@@ -7,7 +7,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
 
 // import { environment } from '../environments/environment';
-import { myFire} from 'secret';
+import { environment } from 'secret';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -33,9 +33,9 @@ import { AuthModule } from './auth/auth.module';
     BrowserAnimationsModule,
     MaterialModule,
     FlexLayoutModule,
-    AngularFireModule.initializeApp(myFire),
+    AngularFireModule.initializeApp(environment.myFire),
     AuthModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
