@@ -2,10 +2,13 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Subject } from "rxjs";
 import { AngularFireAuth } from "@angular/fire/compat/auth";
-import { UIService } from '../shared/ui.service';
+import { Store } from '@ngrx/store';
 
+import { UIService } from '../shared/ui.service';
 import { AuthData } from "./auth-data.model";
 import { TrainingService } from "../training/training.service";
+import * as fromApp from '../app.reducer'
+
 
 
 
@@ -21,7 +24,8 @@ export class AuthService {
     private router: Router,
     private afaAuth: AngularFireAuth,
     private trainingService: TrainingService,
-    private uiService: UIService
+    private uiService: UIService,
+    private store: Store<{ui: fromApp.State}>
     ) {}
 
     initAuthListener() {
