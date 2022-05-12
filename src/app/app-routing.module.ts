@@ -6,9 +6,12 @@ import { AuthGuard } from './auth/auth.guard';
 import { WelcomeComponent } from './welcome/welcome.component';
 
 const routes: Routes = [
-  {path: '', component: WelcomeComponent},
-  {path: 'training', loadChildren: () => import('./training/training.module').then(mod => mod.TrainingModule)
-}
+  { path: '', canLoad: [AuthGuard], component: WelcomeComponent },
+  {
+    path: 'training',
+    loadChildren: () =>
+      import('./training/training.module').then((mod) => mod.TrainingModule),
+  },
 ];
 
 @NgModule({
