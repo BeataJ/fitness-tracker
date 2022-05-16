@@ -17,7 +17,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import { AuthModule } from './auth/auth.module';
-import { appReducer } from './app.reducer';
+import { reducers } from './app.reducer';
 
 
 
@@ -39,7 +39,7 @@ import { appReducer } from './app.reducer';
     AngularFireModule.initializeApp(environment.myFire),
     AuthModule,
     AngularFirestoreModule,
-    StoreModule.forRoot({ui: appReducer})
+    StoreModule.forRoot(reducers)
   ],
   providers: [],
   bootstrap: [AppComponent],

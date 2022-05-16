@@ -7,8 +7,8 @@ import { Store } from '@ngrx/store';
 import { UIService } from '../shared/ui.service';
 import { AuthData } from "./auth-data.model";
 import { TrainingService } from "../training/training.service";
-import * as fromApp from '../app.reducer'
-
+import * as fromRoot from '../app.reducer'
+import * as UI from '../shared/ui.actions';
 
 
 @Injectable({
@@ -23,7 +23,7 @@ export class AuthService {
     private afaAuth: AngularFireAuth,
     private trainingService: TrainingService,
     private uiService: UIService,
-    private store: Store<{ui: fromApp.State}>
+    private store: Store<fromRoot.State>
     ) {}
 
     initAuthListener() {
@@ -43,15 +43,15 @@ export class AuthService {
 
   registerUser(authData: AuthData) {
     // this.uiService.logingStateChanged.next(true);
-    this.store.dispatch({type: 'START_LOADING' })
+    this.store.dispatch(new UI.StartLoading())
     this.afaAuth
       .createUserWithEmailAndPassword(authData.email, authData.password)
       .then(result => {
         // this.uiService.logingStateChanged.next(false);
-        this.store.dispatch({ type: 'STOP_LOADING' });
+        this.store.dispatch(new UI.StopLoading());
     }).catch((error) => {
       // this.uiService.logingStateChanged.next(false);
-      this.store.dispatch({ type: 'STOP_LOADING' });
+      this.store.dispatch(new UI.StopLoading);
       this.uiService.showSnackbar(error.message, null, 3000)
 
     })
@@ -60,15 +60,15 @@ export class AuthService {
 
   login(authData: AuthData) {
     // this.uiService.logingStateChanged.next(true);
-    this.store.dispatch({ type: 'START_LOADING' });
+    this.store.dispatch(new UI.StartLoading);
     this.afaAuth
       .signInWithEmailAndPassword(authData.email, authData.password)
       .then(result => {
       // this.uiService.logingStateChanged.next(false)
-        this.store.dispatch({ type: 'STOP_LOADING' });
+        this.store.dispatch(new UI.StopLoading);
     }).catch(error => {
       // this.uiService.logingStateChanged.next(false);
-      this.store.dispatch({ type: 'STOP_LOADING' });
+      this.store.dispatch(new UI.StopLoading);
       this.uiService.showSnackbar(error.message, null, 3000);
     })
 
@@ -86,7 +86,5 @@ export class AuthService {
 }
 
 
-function action(_message: any, _action: any) {
-  throw new Error("Function not implemented.");
-}
+
 
