@@ -15,7 +15,8 @@ import { Store } from '@ngrx/store';
 })
 export class SignupComponent implements OnInit {
   maxDate;
-  isLoading$ = new Observable<boolean>();
+  isLoading$!: Observable<boolean>;
+  // isLoading$ = new Observable<boolean>()
   private loadingSubs: Subscription = new Subscription;
 
   constructor(

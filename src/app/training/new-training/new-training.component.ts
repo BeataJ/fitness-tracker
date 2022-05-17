@@ -17,7 +17,7 @@ import { Store } from '@ngrx/store';
   styleUrls: ['./new-training.component.css'],
 })
 
-export class NewTrainingComponent implements OnInit {
+export class NewTrainingComponent implements OnInit, OnDestroy {
   @Output() trainingStart = new EventEmitter<void>();
   exercises: Exercise[] | null = [];
   private exerciseSubscription!: Subscription;
@@ -54,13 +54,13 @@ export class NewTrainingComponent implements OnInit {
     this.trainingService.startExercise(form.value.exercise);
   }
 
-  // ngOnDestroy(): void {
-  //   if(this.exerciseSubscription) {
-  //     this.exerciseSubscription.unsubscribe();
-  //   }
+  ngOnDestroy(): void {
+    if(this.exerciseSubscription) {
+      this.exerciseSubscription.unsubscribe();
+    }
 
-  //   if(this.loadingSubscription) {
-  //     this.loadingSubscription.unsubscribe();
-  //   }
-  // }
+    // if(this.loadingSubscription) {
+    //   this.loadingSubscription.unsubscribe();
+    // }
+  }
 }

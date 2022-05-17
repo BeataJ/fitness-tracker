@@ -1,5 +1,4 @@
 import { Injectable } from "@angular/core";
-import { Subject } from "rxjs";
 import { MatSnackBar } from "@angular/material/snack-bar";
 
 
@@ -7,7 +6,7 @@ import { MatSnackBar } from "@angular/material/snack-bar";
   providedIn: 'root'
 })
 export class UIService {
-  logingStateChanged = new Subject<boolean>()
+
 
   constructor(private snackbar: MatSnackBar) {}
 
