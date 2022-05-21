@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 
 import { AuthService } from "./auth.service";
 import * as fromRoot from '../app.reducer';
+import { take } from "rxjs";
 
 @Injectable()
 export class AuthGuard implements  CanLoad {
@@ -13,10 +14,10 @@ export class AuthGuard implements  CanLoad {
     ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): any {
-    return this.store.select(fromRoot.getIsAuth);
+    return this.store.select(fromRoot.getIsAuth).pipe(take(1));
   }
 
   canLoad(route: Route): any {
-    return this.store.select(fromRoot.getIsAuth);
+    return this.store.select(fromRoot.getIsAuth).pipe(take(1));
   }
 }
