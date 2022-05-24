@@ -20,7 +20,7 @@ const initialState: TrainingState = {
   activeTraining: null
 };
 
-export function authReducer(state = initialState, action: TrainigActions) {
+export function trainingReducer(state = initialState, action: TrainigActions) {
   switch (action.type) {
     case SET_AVAILABLE_TRAINING:
       return {
