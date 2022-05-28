@@ -67,3 +67,7 @@ export const getIsTraining = createSelector(
 );
 
 
+export function getIsLoading(getIsLoading: any): import("rxjs").Observable<boolean> {
+  throw new Error('Function not implemented.');
+}
+
