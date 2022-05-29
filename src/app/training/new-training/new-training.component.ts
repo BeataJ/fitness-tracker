@@ -1,15 +1,15 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
-import {  Observable, Subscription } from 'rxjs';
+import {  Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 
 import { Exercise } from '../exercise.model';
 import { TrainingService } from '../training.service';
-import { UIService } from 'src/app/shared/ui.service';
 import * as fromTraining from '../training.reducer';
 import * as fromRoot from '../../app.reducer'
+import { UIService } from 'src/app/shared/ui.service';
 
 
 @Component({

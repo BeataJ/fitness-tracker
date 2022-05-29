@@ -21,7 +21,7 @@ import { trainingReducer } from "./training.reducer";
   imports: [
     SharedModule,
     TrainingRoutingModule,
-    StoreModule.forFeature('training' ,trainingReducer)
+    StoreModule.forFeature('training', trainingReducer)
   ],
   exports: [],
   entryComponents: [StopTrainingComponent],

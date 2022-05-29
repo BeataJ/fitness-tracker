@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { UIService } from 'src/app/shared/ui.service';
 import { AuthService } from '../auth.service';
@@ -16,8 +16,7 @@ import { Store } from '@ngrx/store';
 export class SignupComponent implements OnInit {
   maxDate;
   isLoading$!: Observable<boolean>;
-  // isLoading$ = new Observable<boolean>()
-  private loadingSubs: Subscription = new Subscription;
+
 
   constructor(
     private authService: AuthService,
@@ -30,9 +29,6 @@ export class SignupComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoading$ = this.store.select(fromRoot.getIsLoading)
-    // this.loadingSubs = this.uiService.logingStateChanged.subscribe(isloading => {
-    //   this.isLoading = isloading;
-    // })
   }
 
   onSubmit(form: NgForm) {
@@ -41,11 +37,4 @@ export class SignupComponent implements OnInit {
       password: form.value.password
     })
   }
-
-  // ngOnDestroy(): void {
-  //   if(this.loadingSubs){
-  //     this.loadingSubs.unsubscribe();
-  //   }
-
-  // }
 }
